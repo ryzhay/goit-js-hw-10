@@ -29,6 +29,8 @@ fetchBreeds()
 });
 
 function onChange(element) {
+  element.preventDefault();
+  
   refs.loader.classList.remove('is-hidden');
   refs.catInfo.classList.add('is-hidden');
   refs.error.classList.add('is-hidden');
@@ -59,7 +61,7 @@ function createCatMarkup({
   url,
 }) {
 return `
-<img src="${url}" alt="${name}" width="350" height="350" />
+<img src="${url}" alt="${name}" width="800" height="500" />
 <div class="text-wrapper">
 <h1 class="title">${name}</h1>
 <p class="description">${description}</p>
