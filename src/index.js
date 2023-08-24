@@ -12,35 +12,35 @@ const refs = {
 };
 
 refs.select.addEventListener('change', onChange);
-refs.select.classList.add('hidden');
-refs.error.classList.add('hidden');
+refs.select.classList.add('is-hidden');
+refs.error.classList.add('is-hidden');
 
 fetchBreeds()
 .then(arr => {
-  refs.select.classList.remove('hidden');
-  refs.loader.classList.add('hidden');
-  refs.error.classList.add('hidden');
+  refs.select.classList.remove('is-hidden');
+  refs.loader.classList.add('is-hidden');
+  refs.error.classList.add('is-hidden');
   refs.select.innerHTML = createMarkup(arr.data);
   slim();
 })
-.catch(() => {
-  refs.loader.classList.add('hidden');
+.catch((error) => {
+  refs.loader.classList.add('is-hidden');
   Notify.failure(`${refs.error.textContent}`)
 });
 
-function onChange(event) {
-  refs.loader.classList.remove('hidden');
-  refs.catInfo.classList.add('hidden');
-  refs.error.classList.add('hidden');
-  const elementId = event.target.value;
+function onChange(element) {
+  refs.loader.classList.remove('is-hidden');
+  refs.catInfo.classList.add('is-hidden');
+  refs.error.classList.add('is-hidden');
+  const elementId = element.target.value;
 
   fetchCatByBreed (elementId).then(object => {
     refs.catInfo.innerHTML = createCatMarkup(object.data[0]);
-    refs.loader.classList.add('hidden');
-    refs.catInfo.classList.remove('hidden');
+    refs.loader.classList.add('is-hidden');
+    refs.catInfo.classList.remove('is-hidden');
   })
-  .catch(() => {
-    refs.loader.classList.add('hidden');
+  .catch((error) => {
+    refs.loader.classList.add('is-hidden');
     Notify.failure(`${refs.error.textContent}`)
   })
 }
